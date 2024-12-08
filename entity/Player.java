@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import Main.Game;
 import Main.KeyHandler;
 import Objects.Object_Farmland;
+import Objects.Object_TreeLog;
 import Objects.objects;
 
 public class Player extends Entity{
@@ -166,7 +167,7 @@ public class Player extends Entity{
             if(gp.obj[index].name.equals("Pit")){
                 gp.screenChange = true;
             }
-            if(gp.obj[index].name.equals("Door")){
+            else if(gp.obj[index].name.equals("Door")){
 
                 if(hand != null && hand.name.equals("Key")){
                     removeObjectFromInventory(hand);
@@ -174,10 +175,17 @@ public class Player extends Entity{
                     gp.obj[index].setup("/tiles/dooropen", "DoorOpen", false);
 
                 }
-
             }
-            if(gp.obj[index].name.equals("Campfire")){
+            else if(gp.obj[index].name.equals("Campfire")){
                 receiveDamage(1);
+            }
+            else if(gp.obj[index].name.equals("Log")){
+                putObjectsToInventory(gp.obj[index]);
+                gp.obj[index] = null;
+            }
+            else if(gp.obj[index].name.equals("RottenFlesh")){
+                putObjectsToInventory(gp.obj[index]);
+                gp.obj[index] = null;
             }
         }  
     }
@@ -187,7 +195,7 @@ public class Player extends Entity{
             for(int i = 0; i < inventory.length;i++){
                 for(int k = 0;k < inventory[2].length;k++){
     
-                    if(inventory[i][k] != null && inventory[i][k] == o){
+                    if(inventory[i][k] != null && inventory[i][k].name.equals(o.name)){
                         inventory[i][k].totalAmount++;
                         o = null;
                         notHave = false;
@@ -333,8 +341,8 @@ public class Player extends Entity{
             if(gp.obj[index].destructable){
                 gp.obj[index].setup("/tiles/treetrunk", "Treetrunk", false);
                 gp.obj[index].startTimer = true;
-                putObjectsToInventory(gp.obj[8]);
                 gp.obj[index].destructable = false;
+                createNewObject(new Object_TreeLog(gp), gp.obj[index].worldX / 48, gp.obj[index].worldY  / 48);
             }
         }
     }

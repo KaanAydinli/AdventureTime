@@ -95,7 +95,7 @@ public class UI {
         if(gp.gameState == gp.mapState){
             drawMap();
         }
-        drawDayNight();
+        
     }
     public void drawMap() {
         int worldCol = 0;
@@ -856,23 +856,5 @@ public class UI {
             g2.drawString(gp.player.hand.totalAmount + "",gp.tileSize * 5 + gp.tileSize * 5 / 6,gp.tileSize * 11);
         }
            
-    }
-    public void drawDayNight(){
-
-        if(time <= 2048){
-            time += 2;
-        }
-        else if(time > 1800 && time <= 2100){
-            time = time + 1/2;
-            gp.light.draw(g2);
-        }
-        else if(time > 2100){
-            time = 0;
-            
-        }
-
-        g2.setColor(new Color(0,0,0,time / 16));
-        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-        System.out.println(time);
     }
 }

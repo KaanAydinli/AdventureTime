@@ -11,6 +11,7 @@ import Objects.Object_Farmland;
 import Objects.Object_FishingRod;
 import Objects.Object_Key;
 import Objects.Object_Pit;
+import Objects.Object_RottenFlesh;
 import Objects.Object_Sword;
 import Objects.Object_TreeLog;
 import entity.Blacksmith;
@@ -178,6 +179,8 @@ public class AssetSetter {
         gp.obj[29].worldY = 81 * gp.tileSize;
         gp.obj[29].mapNumberPlace = 1;
 
+        gp.obj[30] = new Object_RottenFlesh(gp);
+
 
         gp.player.inventory[0][1] = gp.obj[4];
         gp.player.inventory[0][2] = gp.obj[5];
@@ -187,6 +190,8 @@ public class AssetSetter {
         gp.npc[0].inventory[0][1] = gp.obj[7];     
         gp.npc[0].inventory[0][2] = gp.obj[8];
         gp.npc[0].inventory[0][3] = gp.obj[13];
+        gp.npc[0].inventory[1][0] = gp.obj[30];
+
     }
     public void setMonster(int index){
         gp.monster[index] = new Zombie(gp);
